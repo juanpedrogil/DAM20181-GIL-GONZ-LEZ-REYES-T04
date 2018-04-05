@@ -1,22 +1,49 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>To Do List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <button ion-button block >Agregar</button>
-    
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <button ion-button block>Add Task</button>
+
+  <ion-list>
+
+    <ion-item-group>
+      <ion-item-divider color="light">TODAY!</ion-item-divider>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://st.depositphotos.com/1842549/3995/i/950/depositphotos_39954345-stock-photo-urgent-icon.jpg">
+        </ion-thumbnail>
+        <h2>Task 1</h2>
+        <p>Task Description</p>
+        <p>Task Date</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="light">NOT TODAY!</ion-item-divider>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://www.solidbackgrounds.com/images/1920x1080/1920x1080-yellow-solid-color-background.jpg">
+        </ion-thumbnail>
+        <h2>Task 1</h2>
+        <p>Task Description</p>
+        <p>Task Date</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 
 
+  <!--
+  <ion-list>
+    <ion-item *ngFor="let task of toDoList | async" (click)="seeTask(task)" >
+    <ion-label fixed>{{task.title}}</ion-label>
+    <ion-label *ngIf="task.description!=''">{{task.description}}</ion-label>
+    <ion-label>{{task.date}}</ion-label>  
+  </ion-list>
+  -->
 
 </ion-content>
