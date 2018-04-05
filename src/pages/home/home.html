@@ -7,50 +7,65 @@
 <ion-content padding>
   <button ion-button block (click)="addTask()">Add Task</button>
 
-  <ul>
-    <li *ngFor="let task of tasks | async">
-       {{ task | json }}
-    </li>
-  </ul>
 
-  <!--
   <ion-list>
 
     <ion-item-group>
-      <ion-item-divider color="light">TODAY!</ion-item-divider>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://st.depositphotos.com/1842549/3995/i/950/depositphotos_39954345-stock-photo-urgent-icon.jpg">
-        </ion-thumbnail>
-        <h2>Task 1</h2>
-        <p>Task Description</p>
-        <p>Task Date</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
+      <ion-item-divider>
+        TODAY!
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let task of tasks | async" (click)="updateTask(task.id)">
+          <ion-item>
+              <ion-card>
+                <ion-card-header>
+                  {{task.title}}
+                </ion-card-header>
+                <ion-card-content>
+                  <h5>Descripción</h5>
+                  <p> {{task.description}}</p>
+                  <h5>Id</h5>
+                  <p> {{task.id}}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-item>
+          <ion-item-options side="right">
+              <button ion-button color="danger" (click)="removeTask(task.id)">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              Done!
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
     </ion-item-group>
 
     <ion-item-group>
-      <ion-item-divider color="light">NOT TODAY!</ion-item-divider>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://www.solidbackgrounds.com/images/1920x1080/1920x1080-yellow-solid-color-background.jpg">
-        </ion-thumbnail>
-        <h2>Task 1</h2>
-        <p>Task Description</p>
-        <p>Task Date</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
+      <ion-item-divider>
+        NOT TODAY
+      </ion-item-divider>
+      <ion-item-sliding *ngFor="let task of tasks | async">
+          <ion-item >
+              <ion-card>
+                <ion-card-header>
+                  {{task.title}}
+                </ion-card-header>
+                <ion-card-content>
+                  <h5>Descripción</h5>
+                  <p> {{task.description}}</p>
+                  <h5>Id</h5>
+                  <p> {{task.id}}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-item>
+          <ion-item-options side="right">
+              <button ion-button color="danger" (click)="removeTask(task.id)">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              Done!
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
     </ion-item-group>
-  </ion-list>
--->
 
-  <!--
-  <ion-list>
-    <ion-item *ngFor="let task of tasks | async">
-    <ion-label fixed>{{task.title}}</ion-label>
-    <ion-label *ngIf="task.description!=''">{{task.description}}</ion-label>
-    </ion-item>
   </ion-list>
--->
+
 
 </ion-content>

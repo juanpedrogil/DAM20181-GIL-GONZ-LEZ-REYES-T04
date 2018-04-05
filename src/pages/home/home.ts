@@ -29,6 +29,10 @@ export class HomePage {
           name: 'title',
           placeholder: 'Title'
         },
+        {
+          name: 'description',
+          placeholder: 'Description'
+        },
       ],
       buttons: [
         {
@@ -41,16 +45,57 @@ export class HomePage {
           text: 'Save',
           handler: data => {
             const newTaskRef = this.tasksList.push({});
-
             newTaskRef.set({
               id: newTaskRef.key,
-              title: data.title
+              title: data.title,
+              description: data.description
             });
           }
         }
       ]
     });
     prompt.present();
+  }
+
+  updateTask(taskId){
+    let prompt = this.alertCtrl.create({
+      title: 'Task Name',
+      message: "Update task",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+        {
+          name: 'description',
+          placeholder: 'Description'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.tasksList.update(taskId, {
+              title: data.title,
+              description: data.description
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
+  removeTask(taskId:string){
+    console.log(taskId);
+    this.tasksList.remove(taskId);
   }
 }
 
