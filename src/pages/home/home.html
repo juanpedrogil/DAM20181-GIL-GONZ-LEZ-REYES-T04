@@ -5,8 +5,15 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block>Add Task</button>
+  <button ion-button block (click)="addTask()">Add Task</button>
 
+  <ul>
+    <li *ngFor="let task of tasks | async">
+       {{ task | json }}
+    </li>
+  </ul>
+
+  <!--
   <ion-list>
 
     <ion-item-group>
@@ -35,15 +42,15 @@
       </ion-item>
     </ion-item-group>
   </ion-list>
-
+-->
 
   <!--
   <ion-list>
-    <ion-item *ngFor="let task of toDoList | async" (click)="seeTask(task)" >
+    <ion-item *ngFor="let task of tasks | async">
     <ion-label fixed>{{task.title}}</ion-label>
     <ion-label *ngIf="task.description!=''">{{task.description}}</ion-label>
-    <ion-label>{{task.date}}</ion-label>  
+    </ion-item>
   </ion-list>
-  -->
+-->
 
 </ion-content>
