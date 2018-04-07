@@ -6,66 +6,33 @@
 
 <ion-content padding>
   <button ion-button block (click)="addTask()">Add Task</button>
-
-
   <ion-list>
-
     <ion-item-group>
-      <ion-item-divider>
-        TODAY!
-      </ion-item-divider>
-
-      <ion-item-sliding *ngFor="let task of tasks | async" (click)="updateTask(task.id)">
-          <ion-item>
-              <ion-card>
-                <ion-card-header>
-                  {{task.title}}
-                </ion-card-header>
-                <ion-card-content>
-                  <h5>Descripción</h5>
-                  <p> {{task.description}}</p>
-                  <h5>Id</h5>
-                  <p> {{task.id}}</p>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-          <ion-item-options side="right">
-              <button ion-button color="danger" (click)="removeTask(task.id)">
-              <ion-icon name="checkmark-circle"></ion-icon>
-              Done!
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-    </ion-item-group>
-
-    <ion-item-group>
-      <ion-item-divider>
-        NOT TODAY
-      </ion-item-divider>
       <ion-item-sliding *ngFor="let task of tasks | async">
-          <ion-item >
-              <ion-card>
-                <ion-card-header>
-                  {{task.title}}
-                </ion-card-header>
-                <ion-card-content>
-                  <h5>Descripción</h5>
-                  <p> {{task.description}}</p>
-                  <h5>Id</h5>
-                  <p> {{task.id}}</p>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-          <ion-item-options side="right">
-              <button ion-button color="danger" (click)="removeTask(task.id)">
-              <ion-icon name="checkmark-circle"></ion-icon>
-              Done!
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
+        <ion-item>
+          <ion-card>
+            <ion-card-header>
+              {{task.title}}
+            </ion-card-header>
+            <ion-card-content>
+              <h5>Descripción</h5>
+              <p> {{task.description}}</p>
+              <h5>Id</h5>
+              <p> {{task.id}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" (click)="updateTask(task.id)">
+            <ion-icon name="create"></ion-icon>
+            Edit!
+          </button>
+          <button ion-button color="danger" (click)="removeTask(task.id)">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            Done!
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-item-group>
-
   </ion-list>
-
-
 </ion-content>
