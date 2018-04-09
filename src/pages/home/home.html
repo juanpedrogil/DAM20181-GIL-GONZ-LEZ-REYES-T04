@@ -15,7 +15,7 @@
               {{task.title}}
             </ion-card-header>
             <ion-card-content>
-              <h5>Descripción</h5>
+              <h5>Description</h5>
               <p> {{task.description}}</p>
               <h5>Id</h5>
               <p> {{task.id}}</p>
@@ -23,7 +23,7 @@
           </ion-card>
         </ion-item>
         <ion-item-options side="right">
-          <button ion-button color="secondary" (click)="updateTask(task.id)">
+          <button ion-button color="secondary" (click)="updateTask(task)">
             <ion-icon name="create"></ion-icon>
             Edit!
           </button>

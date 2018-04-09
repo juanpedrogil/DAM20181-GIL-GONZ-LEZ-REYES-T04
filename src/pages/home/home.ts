@@ -12,7 +12,7 @@ export class HomePage {
 
   tasksList: AngularFireList<any>;
   tasks: Observable<any[]>;
-  title:string;
+  title: string;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -23,8 +23,8 @@ export class HomePage {
 
   addTask() {
     let prompt = this.alertCtrl.create({
-      title: 'Task Name',
-      message: "Enter a name for this new task you're so keen on adding",
+      title: 'Add Task',
+      message: "Enter the info for this new task you're so keen on adding",
       inputs: [
         {
           name: 'title',
@@ -58,25 +58,27 @@ export class HomePage {
     prompt.present();
   }
 
-  updateTask(taskId){
-    
-    this.afDatabase.database.ref('tasks').child(taskId).once('value').then(
-      snapshot=>{
-        this.title=snapshot.description;
+  updateTask(task) {
+
+    this.afDatabase.database.ref('tasks').child(task.id).once('value').then(
+      snapshot => {
+        this.title = snapshot.description;
       }
     );
     let prompt = this.alertCtrl.create({
-      title: 'Task Name',
-      message: "Update task",
+      title: 'Edit Task',
+      message: "Update the info of the task",
       inputs: [
         {
           name: 'title',
           placeholder: 'Title',
-          value:this.title
+          value: task.title
         },
         {
           name: 'description',
-          placeholder: 'Description'
+          placeholder: 'Description',
+          value: task.description
+
         },
       ],
       buttons: [
@@ -89,7 +91,7 @@ export class HomePage {
         {
           text: 'Save',
           handler: data => {
-            this.tasksList.update(taskId, {
+            this.tasksList.update(task.id, {
               title: data.title,
               description: data.description
             });
@@ -100,8 +102,7 @@ export class HomePage {
     prompt.present();
   }
 
-
-  removeTask(taskId:string){
+  removeTask(taskId: string) {
     console.log(taskId);
     this.tasksList.remove(taskId);
   }
