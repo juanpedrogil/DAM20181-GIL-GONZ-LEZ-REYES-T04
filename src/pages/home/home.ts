@@ -12,6 +12,7 @@ export class HomePage {
 
   tasksList: AngularFireList<any>;
   tasks: Observable<any[]>;
+  title:string;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -58,13 +59,20 @@ export class HomePage {
   }
 
   updateTask(taskId){
+    
+    this.afDatabase.database.ref('tasks').child(taskId).once('value').then(
+      snapshot=>{
+        this.title=snapshot.description;
+      }
+    );
     let prompt = this.alertCtrl.create({
       title: 'Task Name',
       message: "Update task",
       inputs: [
         {
           name: 'title',
-          placeholder: 'Title'
+          placeholder: 'Title',
+          value:this.title
         },
         {
           name: 'description',
